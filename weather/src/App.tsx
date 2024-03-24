@@ -1,5 +1,5 @@
 import React from 'react';
-import WeatherPage from './pages/task1.1/WeatherPage';
+import WeatherPage from './pages/task2/WeatherPage';
 
 function App(): JSX.Element {
   return <WeatherPage />;
