@@ -1,10 +1,10 @@
-export type WeatherPlaceType = {
+export type WeatherPlaceType  = {
   name: string;
   main: {
-    temp: string;
+    temp: number;
   };
   weather: WeatherStateType[];
-};
+} | null
 
 export type WeatherStateType = {
   main: string;
@@ -12,5 +12,4 @@ export type WeatherStateType = {
   description: string;
 };
 
-// export type WeatherType = {
-// };
+

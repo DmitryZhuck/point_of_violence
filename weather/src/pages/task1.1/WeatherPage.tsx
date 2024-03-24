@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import type { WeatherType, WeatherPlaceType, WeatherStateType } from './types';
+import React, { useState } from 'react';
+import type { WeatherPlaceType } from './types';
 import './weatherStyle.css';
 
 const api = {
@@ -9,8 +9,8 @@ const api = {
 };
 
 export default function WeatherPage(): JSX.Element {
-  const [search, setSearch] = useState('');
-  const [weather, setWeather] = useState<WeatherPlaceType | null>(null);
+  const [search, setSearch] = useState<string>('');
+  const [weather, setWeather] = useState<WeatherPlaceType>(null);
 
   const searchPressed = (): void => {
     axios<WeatherPlaceType>(`${api.base}q=${search}&appid=${api.key}`)
@@ -23,16 +23,12 @@ export default function WeatherPage(): JSX.Element {
       });
   };
 
-  useEffect(() => {
-    searchPressed();
-  }, []);
-
   return (
     <div className="wrap">
       <div className="wrapper">
         <div className="input_div">
           <input
-          value={search}
+            value={search}
             className="inp"
             type="text"
             placeholder="Введите город"
@@ -46,9 +42,8 @@ export default function WeatherPage(): JSX.Element {
           <div>
             <p className="town_name">{weather?.name}</p>
             <div className="t_flex">
-              <p className="temp">{Math.round(weather?.main.temp - 273.15)}°C</p>
+              <p className="temp">{Math.round(weather.main.temp - 273.15)}°C</p>
               <img
-              
                 className="icon"
                 src={`https://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
                 alt="cloud"
